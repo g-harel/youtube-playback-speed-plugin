@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+    <head>
+        <title>youtube-playback-speed</title>
+        <style>
+        body {
+            font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        }
+        .title {
+            font-size: 15px;
+        }
+        .speed {
+            color: red;
+        }
+        .slider {
+            -webkit-appearance: none;
+            z-index: 1;
+        }
+        .slider::-webkit-slider-runnable-track {
+            border-radius: 2px;
+            background: #ccc;
+            height: 21px;
+        }
+        .slider:focus {
+            outline: none;
+        }
+        .one {
+            position: absolute;
+            background: #aaa;
+            height: 16px;
+            z-index: -1;
+            bottom: 5px;
+            width: 1px;
+            left: 42px;
+        }
+        </style>
+        <script src="popup.js"></script>
+    </head>
+    <body>
+        <span class="title">Playback speed: <span class="speed">1.0</span></span>
+        <input class="slider" type="range"  min="0.1" max="4" value="1" step="0.1"/>
+        <div class="one"></div>
+    </body>
+</html>
+
