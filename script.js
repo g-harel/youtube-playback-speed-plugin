@@ -12,4 +12,12 @@ chrome.storage.sync.get('youtube-playback-speed', (value) => {
 
 chrome.storage.onChanged.addListener((changes) => {
     setPlayback(changes['youtube-playback-speed'].newValue)
-}); 
+});
+
+window.addEventListener('click', () => {
+    setTimeout(() => {
+        chrome.storage.sync.get('youtube-playback-speed', (value) => {
+            setPlayback(value['youtube-playback-speed']);
+        });
+    }, 1000);
+});
