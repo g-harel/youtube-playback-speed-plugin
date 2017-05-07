@@ -1,6 +1,9 @@
-const player = document.getElementsByClassName('html5-main-video')[0];
+let player = null
 
 const setPlayback = (value = 1) => {
+    if (!player) {
+        player = document.getElementsByClassName('html5-main-video')[0];
+    }
     if (player) {
         player.playbackRate = Number(value).toFixed(1);
     }
@@ -15,9 +18,12 @@ chrome.storage.onChanged.addListener((changes) => {
 });
 
 window.addEventListener('click', () => {
-    setTimeout(() => {
+    const id = setInterval(() => {
         chrome.storage.sync.get('youtube-playback-speed', (value) => {
             setPlayback(value['youtube-playback-speed']);
         });
-    }, 1000);
+        if (player) {
+            clearInterval(id);
+        }
+    }, 100);
 });
